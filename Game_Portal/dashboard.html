@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f1b4a">
+<title>Ranking</title>
+<link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<main>
+  <h1>GAME PORTAL</h1>
+  <p id="msg">¡POR FAVOR ESPERE!</p>
+  <section>
+    <table>
+      <tr><th>jugador<th>Puntos<th>Logros
+    </table>
+  </section>
+  <button>CERRAR SESIÓN</button>
+</main>
+
+<script>
+  // Agrega una fila (vacía si no hay datos)
+  const fila = (clase, d = []) => {
+    const r = document.querySelector('table').insertRow();
+    r.className = clase;
+    for (let i = 0; i < 3; i++) {
+      const c = r.insertCell();
+      c.textContent = d[i] ?? '';
+      if (!clase) c.contentEditable = 'plaintext-only'; // se puede escribir en las filas reales
+    }
+  };
+
+  // Enter confirma la celda (no crea líneas nuevas)
+  document.querySelector('table').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); }
+  });
+
+  for (let i = 0; i < 10; i++) fila('v'); // filas vacías mientras carga
+
+  setTimeout(() => {
+    document.querySelectorAll('.v').forEach(r => r.remove());
+    for (let i = 0; i < 10; i++) fila(''); // filas vacías, que se pueden escribir
+    msg.textContent = 'TABLA DE POSICIONES';
+  }, 1800);
+</script>
+</body>
+</html>

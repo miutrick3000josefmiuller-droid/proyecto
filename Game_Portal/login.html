@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f1b4a">
+<title>Login</title>
+<link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+<main>
+  <h1>GAME PORTAL</h1>
+  <p>Enter the digital realm</p>
+  <form>
+    <label class="mail">EMAIL OR USERNAME <input id="u" autocomplete="username"></label>
+    <label class="lock">PASSWORD <input id="p" type="password" autocomplete="current-password"><i role="button" aria-label="Mostrar contraseña"></i></label>
+    <b id="e"></b>
+    <label class="chk"><input type="checkbox"> REMEMBER ME</label>
+    <a href="#">FORGOT PASSWORD?</a>
+    <button class="go">ENTER GAME</button>
+  </form>
+  <p>Or continue with</p>
+  <nav><button class="g">GOOGLE</button><button class="d">DISCORD</button></nav>
+  <footer>New to the game? <a href="#">Create account</a></footer>
+</main>
+
+<script>
+  document.querySelector('i').onclick = () => p.type = p.type == 'password' ? 'text' : 'password';
+
+  document.querySelector('form').onsubmit = ev => {
+    ev.preventDefault();
+    const ok = u.value == 'admin' && p.value == '1234'; // demo
+    e.style.color = ok ? '#7dffb3' : '';
+    e.textContent = ok ? 'Bienvenido, ' + u.value : 'Usuario o contraseña incorrectos.';
+  };
+</script>
+</body>
+</html>

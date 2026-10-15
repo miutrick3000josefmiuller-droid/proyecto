@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autenticación facial</title>
+<link rel="stylesheet" href="assets/css/asistencia.css">
+
+<main>
+  <h1>GAME PORTAL</h1>
+  <h2>¡¡AUTENTICACION FACIAL!!</h2>
+  <p id="user">MOONSLAYER3000</p>
+  <section><video hidden autoplay playsinline muted></video></section>
+  <i></i>
+  <p id="st">ESCANEANDO ROSTRO...</p>
+</main>
+
+<script>
+  const v = document.querySelector('video');
+
+  // Cámara (si no das permiso, se queda la silueta)
+  navigator.mediaDevices?.getUserMedia({ video: true })
+    .then(s => { v.srcObject = s; v.hidden = false; })
+    .catch(() => {});
+
+  // Simulación del escaneo
+  setTimeout(() => {
+    document.querySelector('main').className = 'ok';
+    st.textContent = 'AUTENTICACION COMPLETADA';
+    v.srcObject?.getTracks().forEach(t => t.stop());
+  }, 3500);
+</script>
